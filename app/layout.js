@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./scrollbar.css";
 import { ThemeProvider } from "../context/ThemeProvider.jsx";
 import { Toaster } from "../components/ui/toaster.jsx";
 import { AuthContextProvider } from "../context/AuthContext.jsx";

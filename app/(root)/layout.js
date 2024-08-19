@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
     <>
       <main className="flex h-screen w-screen flex-row overflow-hidden">
         <LeftSidebar />
-        <section className="flex size-full flex-col overflow-y-auto">
+        <section className="flex size-full flex-col overflow-y-auto bg-card">
           <TopBar />
           {children}
         </section>

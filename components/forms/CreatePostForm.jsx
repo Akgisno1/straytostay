@@ -58,9 +58,13 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="flex items-center rounded-t-xl bg-card">
+    <div className="flex size-full flex-row items-center justify-center  gap-6">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full p-4 ">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="h-full w-[70%] gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
+        >
+          <h1 className="pb-6 font-mont text-3xl ">Create Adoption Post</h1>
           <FormField
             control={form.control}
             name="title"
@@ -81,7 +85,7 @@ const UserLoginForm = () => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="mt-2 font-mont text-xl font-bold text-[hsl(var(--foreground))]">
+                <FormLabel className="mt-2 font-mont text-xl font-bold text-foreground">
                   Post Description
                 </FormLabel>
                 <FormControl>
@@ -102,35 +106,41 @@ const UserLoginForm = () => {
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="mt-2 font-mont text-xl font-bold text-[hsl(var(--foreground))]">
-                    Tick for Urgent Adoption
-                  </FormLabel>
-                </div>
+
+                <FormLabel className="ml-4 mt-2 font-mont text-xl font-bold text-foreground">
+                  Urgent Adoption
+                </FormLabel>
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="mt-8 font-mont text-xl font-bold">
-            Login
+          <Button type="submit" className="mt-8 font-mont text-xl font-bold ">
+            Create Post
           </Button>
         </form>
       </Form>
-      <div className="">
-        <div>
+      <div className="relative flex h-full w-[30%] overflow-hidden rounded-xl bg-primary-foreground p-4">
+        <div className="flex w-full flex-col gap-4 overflow-auto px-4">
           {images.map((image, index) => (
-            <img src={image} key={index} alt="" />
+            <img
+              src={image}
+              key={index}
+              alt=""
+              className="h-1/3 w-full rounded-lg object-cover"
+            />
           ))}
         </div>
-        <UploadWidget
-          uwConfig={{
-            multiple: true,
-            cloudName: "Akgisno1",
-            uploadPreset: "straytostay",
-            folder: "posts",
-          }}
-          setState={setImages}
-        />
+        <div className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <UploadWidget
+            uwConfig={{
+              multiple: true,
+              cloudName: "Akgisno1",
+              uploadPreset: "straytostay",
+              folder: "posts",
+            }}
+            setState={setImages}
+          />
+        </div>
       </div>
     </div>
   );
