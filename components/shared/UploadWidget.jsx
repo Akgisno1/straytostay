@@ -62,7 +62,7 @@ function UploadWidget({ uwConfig, setPublicId, setState }) {
           fontWeight: "bold",
         }}
         id="upload_widget"
-        className="bg-primary text-primary-foreground"
+        className="bg-green-700 text-primary-foreground"
         onClick={initializeCloudinaryWidget}
       >
         Upload

@@ -114,7 +114,10 @@ const UserLoginForm = () => {
             )}
           />
 
-          <Button type="submit" className="mt-8 font-mont text-xl font-bold ">
+          <Button
+            type="submit"
+            className="mt-8 bg-green-700 font-mont text-xl font-bold hover:bg-green-500 "
+          >
             Create Post
           </Button>
         </form>

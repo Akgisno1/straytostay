@@ -1,18 +1,20 @@
 "use client";
 import React from "react";
-
+import ProfileAvatar from "./shared/ProfileAvatar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import GlobalSearch from "./shared/GlobalSearch";
 import { ModeToggle } from "./ModeToggle";
+import { useAuth } from "../context/AuthContext";
 
 const TopBar = () => {
   const pathname = usePathname();
+  const { currentUser } = useAuth();
 
   return (
     <div className="flex h-[9vh] w-full flex-row items-center justify-between p-4">
       <div className="flex flex-row items-center gap-4">
-        <h2 className="font-oxo text-4xl font-bold text-primary max-md:text-3xl max-sm:hidden">
+        <h2 className="font-oxo text-4xl font-bold text-green-500 max-md:text-3xl ">
           StraytoStay
         </h2>
       </div>
@@ -22,12 +24,16 @@ const TopBar = () => {
         </div>
       )}
       <div className="flex flex-row items-center justify-end gap-4">
-        <Link
-          href="/useraccess"
-          className="rounded-md bg-accent p-2 font-oxo text-xl text-accent-foreground max-md:text-base"
-        >
-          Login/Register
-        </Link>
+        {currentUser ? (
+          <ProfileAvatar />
+        ) : (
+          <Link
+            href="/useraccess"
+            className="rounded-md bg-accent p-2 font-oxo text-xl text-accent-foreground max-md:text-base"
+          >
+            Login/Register
+          </Link>
+        )}
 
         <ModeToggle />
       </div>

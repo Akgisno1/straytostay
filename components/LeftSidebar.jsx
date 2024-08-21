@@ -22,7 +22,7 @@ const LeftSidebar = () => {
 
   const linkClasses = (href) =>
     `flex h-10 items-center py-6 px-3 gap-3 font-oxo text-lg font-bold rounded-md justify-center ${
-      pathname === href ? "bg-primary" : "text-primary hover:bg-card"
+      pathname === href ? "bg-green-500" : "text-primary hover:bg-card"
     }`;
 
   const iconClasses = (href) =>

@@ -3,7 +3,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { logoutUser } from "../../lib/actions/user.action";
 import { useToast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   HoverCard,
   HoverCardContent,
@@ -13,18 +13,20 @@ import {
 const Logout = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const pathname = usePathname();
 
   const handlelogout = async () => {
     try {
       await logoutUser();
 
       localStorage.removeItem("user");
+      router.push("/");
+
+      window.location.reload();
 
       toast({
         title: "User Logged Out",
       });
-
-      router.push("/");
     } catch (error) {
       toast({
         title: "LogOut failed",

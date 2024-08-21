@@ -20,7 +20,7 @@ import { Textarea } from "../ui/textarea";
 
 import { createQuestion } from "../../lib/actions/question.action";
 
-const UserLoginForm = () => {
+const CreateQuestionForm = () => {
   const { toast } = useToast();
   const pathname = usePathname();
   const { currentUser } = useAuth();
@@ -39,6 +39,7 @@ const UserLoginForm = () => {
         content: values.content,
         path: pathname,
       });
+      form.reset();
       toast({
         title: "Question Created",
       });
@@ -51,23 +52,25 @@ const UserLoginForm = () => {
     }
   };
 
+  // Render the form only if there's a current user
+  if (!currentUser) {
+    return null;
+  }
+
   return (
-    <div className="flex size-full flex-row items-center justify-center  gap-6">
+    <div className="flex w-full flex-row items-center justify-center  gap-6">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="h-full w-[70%] gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
+          className="h-full w-full gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
         >
-          <h1 className="pb-6 font-mont text-3xl ">Question the Community</h1>
+          <h1 className=" font-mont text-3xl ">Question the Community</h1>
 
           <FormField
             control={form.control}
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="mt-2 font-mont text-xl font-bold text-foreground">
-                  Post Description
-                </FormLabel>
                 <FormControl>
                   <Textarea {...field} className="h-12 bg-[hsl(var(--card))]" />
                 </FormControl>
@@ -76,7 +79,10 @@ const UserLoginForm = () => {
             )}
           />
 
-          <Button type="submit" className="mt-8 font-mont text-xl font-bold ">
+          <Button
+            type="submit"
+            className="mt-8 bg-green-700 font-mont text-xl font-bold hover:bg-green-500"
+          >
             Ask Question
           </Button>
         </form>
@@ -85,4 +91,4 @@ const UserLoginForm = () => {
   );
 };
 
-export default UserLoginForm;
+export default CreateQuestionForm;

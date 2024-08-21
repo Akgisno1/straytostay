@@ -1,0 +1,26 @@
+import React from "react";
+import { getTopQuestions } from "../../lib/actions/question.action";
+import Link from "next/link";
+
+const TopQuestions = async () => {
+  const result = await getTopQuestions();
+  return (
+    <div className=" flex w-full flex-col  gap-4 mt-4 overflow-auto">
+      <h1 className="font-oxo text-3xl font-semibold text-primary">
+        Top Questions
+      </h1>
+
+      {result.map((question) => (
+        <Link
+          href={`/question/${question._id}`}
+          key={question._id}
+          className="text-xl font-mont line-clamp-1  text-gray-500 hover:text-primary"
+        >
+          {question.content}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export default TopQuestions;
