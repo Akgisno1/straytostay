@@ -12,23 +12,23 @@ import {
   FormMessage,
   FormLabel,
 } from "../ui/form";
-import { userValidationSchema } from "../../lib/validation";
+import { ngoValidationSchema } from "../../lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import UploadWidget from "../shared/UploadWidget";
-import { createUser } from "../../lib/actions/user.action";
+import { createNgo } from "../../lib/actions/ngo.action";
 
-const UserRegisterForm = () => {
+const NgoRegisterForm = () => {
   const { toast } = useToast();
   const [images, setImages] = useState([]);
-
+  const [cover, setCover] = useState([]);
   const form = useForm({
-    resolver: zodResolver(userValidationSchema),
+    resolver: zodResolver(ngoValidationSchema),
   });
 
   const onSubmit = async (values) => {
     try {
-      await createUser({
+      await createNgo({
         name: values.name,
         email: values.email,
         username: values.username,
@@ -37,15 +37,16 @@ const UserRegisterForm = () => {
         phoneNumber: values.phoneNumber,
         bio: values.bio,
         avatar: images[0],
+        cover: cover[0],
       });
       window.location.reload();
       toast({
-        title: "Registered user",
+        title: "Registered Ngo",
       });
     } catch (error) {
       console.log(error);
       toast({
-        title: "User Registration Failed",
+        title: "Ngo Registration Failed",
         variant: "destructive",
       });
     }
@@ -169,36 +170,62 @@ const UserRegisterForm = () => {
             type="submit"
             className="  font-mont text-lg font-bold bg-green-700 hover:bg-green-500"
           >
-            Register User
+            Register NGO
           </Button>
         </form>
       </Form>
-      <div className="relative flex  w-full h-48 overflow-hidden rounded-xl  p-4">
-        <div className="flex w-full flex-row gap-4 overflow-auto px-4">
-          {images.map((image, index) => (
-            <img
-              src={image}
-              key={index}
-              alt=""
-              className="h-full w-full  object-cover rounded-full"
+      <div className="flex flex-row gap-2 w-full">
+        <div className="relative flex  w-full h-48 overflow-hidden rounded-xl  p-2">
+          <div className="flex w-full flex-row gap-4 overflow-auto px-4">
+            {images.map((image, index) => (
+              <img
+                src={image}
+                key={index}
+                alt=""
+                className="h-full w-full  object-cover rounded-full"
+              />
+            ))}
+          </div>
+          <div className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <UploadWidget
+              uwConfig={{
+                multiple: true,
+                cloudName: "Akgisno1",
+                uploadPreset: "straytostay",
+                folder: "ngoavatars",
+              }}
+              setState={setImages}
+              buttonText="Ngo Avatar"
             />
-          ))}
+          </div>
         </div>
-        <div className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <UploadWidget
-            uwConfig={{
-              multiple: true,
-              cloudName: "Akgisno1",
-              uploadPreset: "straytostay",
-              folder: "useravatars",
-            }}
-            setState={setImages}
-            buttonText="User Avatar"
-          />
+        <div className="relative flex  w-full h-48 overflow-hidden rounded-xl  p-2">
+          <div className="flex w-full flex-row gap-4 overflow-auto px-4">
+            {cover.map((image, index) => (
+              <img
+                src={image}
+                key={index}
+                alt=""
+                className="h-full w-full  object-cover rounded-full"
+              />
+            ))}
+          </div>
+          <div className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <UploadWidget
+              uwConfig={{
+                multiple: true,
+                cloudName: "Akgisno1",
+                uploadPreset: "straytostay",
+                folder: "ngocovers",
+              }}
+              setState={setCover}
+              buttonText="Ngo Cover"
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default UserRegisterForm;
+export default NgoRegisterForm;

@@ -12,34 +12,34 @@ import {
   FormMessage,
   FormLabel,
 } from "../ui/form";
-import { userLoginSchema } from "../../lib/validation";
+import { ngoLoginSchema } from "../../lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { useAuth } from "../../context/AuthContext";
 
-import { loginUser } from "../../lib/actions/user.action";
+import { loginNgo } from "../../lib/actions/ngo.action";
 
-const UserLoginForm = () => {
+const NgoLoginForm = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const { updateUser } = useAuth();
+  const { updateNgo } = useAuth();
 
   const form = useForm({
-    resolver: zodResolver(userLoginSchema),
+    resolver: zodResolver(ngoLoginSchema),
   });
 
   const onSubmit = async (values) => {
     try {
-      const userInfo = await loginUser({
+      const ngoInfo = await loginNgo({
         username: values.username,
         password: values.password,
       });
 
-      if (userInfo) {
-        localStorage.setItem("user", userInfo);
-        updateUser(JSON.parse(userInfo));
+      if (ngoInfo) {
+        localStorage.setItem("ngo", ngoInfo);
+        updateNgo(JSON.parse(ngoInfo));
         toast({
-          title: "User Logged In",
+          title: "Ngo Logged In",
         });
         router.push("/");
       }
@@ -97,7 +97,7 @@ const UserLoginForm = () => {
             type="submit"
             className="mt-8 font-mont text-xl font-bold bg-green-700 hover:bg-green-500"
           >
-            Login
+            NGO Login
           </Button>
         </form>
       </Form>
@@ -105,4 +105,4 @@ const UserLoginForm = () => {
   );
 };
 
-export default UserLoginForm;
+export default NgoLoginForm;

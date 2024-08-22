@@ -14,7 +14,7 @@ import { Button } from "../../../components/ui/button.jsx";
 const page = () => {
   return (
     <div className="flex size-full flex-row">
-      <div className="relative flex h-full w-1/2 items-center justify-center">
+      <div className="relative flex h-full w-1/2 items-center justify-center max-md:hidden">
         <div className="absolute left-[10%] top-[10%] z-10 flex flex-row gap-3 font-oxo text-primary">
           <Image src="/straytostay.png" alt="logo" width={36} height={36} />
           <h2 className="font-oxo text-4xl font-bold text-white max-md:text-3xl max-sm:hidden">
@@ -34,8 +34,8 @@ const page = () => {
           </h2>
         </div>
       </div>
-      <div className=" relative flex h-full w-1/2 items-center justify-center">
-        <div className=" w-3/5">
+      <div className=" relative flex h-full w-1/2 items-center justify-center max-md:w-full">
+        <div className=" w-3/5 max-md:w-[90%] mt-4">
           <Tabs defaultValue="login">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Login</TabsTrigger>
@@ -49,16 +49,20 @@ const page = () => {
             </TabsContent>
           </Tabs>
         </div>
-        <Button
+        <Link
+          href="/ngoaccess"
           variant="outline"
-          className="absolute left-[10%] top-[10%] z-10 rounded bg-primary-foreground p-2 font-oxo text-xl text-primary max-sm:text-base"
+          className="absolute left-[10%] top-[5%] max-md:left-[5%] z-10 rounded bg-primary-foreground p-2 font-oxo text-xl text-primary max-sm:text-base"
         >
-          <Link href="/ngoaccess">Login/Register as an NGO</Link>
-        </Button>
-        <div className="absolute right-[10%] top-[10%] z-10 flex flex-row items-center gap-4">
-          <Button className=" rounded bg-primary p-2 font-oxo text-xl text-primary-foreground max-sm:text-base">
-            <Link href="/">Home</Link>
-          </Button>
+          Login/Register as an NGO
+        </Link>
+        <div className="absolute right-[10%] top-[5%] max-md:right-[5%] z-10 flex flex-row items-center gap-4">
+          <Link
+            href="/"
+            className=" rounded bg-primary p-2 font-oxo text-xl text-primary-foreground max-sm:text-base"
+          >
+            Home
+          </Link>
           <ModeToggle />
         </div>
       </div>

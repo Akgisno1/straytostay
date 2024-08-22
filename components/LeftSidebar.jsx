@@ -17,7 +17,7 @@ import { useTheme } from "next-themes";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
-  const { currentUser } = useAuth();
+  const { currentUser, currentNgo } = useAuth();
   const { theme } = useTheme();
 
   const linkClasses = (href) =>
@@ -90,7 +90,7 @@ const LeftSidebar = () => {
       </div>
 
       <div className="mb-5 flex justify-center">
-        {currentUser && <Logout />}
+        {(currentUser || currentNgo) && <Logout />}
       </div>
     </div>
   );

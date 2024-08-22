@@ -3,7 +3,12 @@ import { createContext, useEffect, useState } from "react";
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext();
 
-function UploadWidget({ uwConfig, setPublicId, setState }) {
+function UploadWidget({
+  uwConfig,
+  setPublicId,
+  setState,
+  buttonText = "Upload",
+}) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -65,7 +70,7 @@ function UploadWidget({ uwConfig, setPublicId, setState }) {
         className="bg-green-700 text-primary-foreground"
         onClick={initializeCloudinaryWidget}
       >
-        Upload
+        {buttonText}
       </button>
     </CloudinaryScriptContext.Provider>
   );

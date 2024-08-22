@@ -58,11 +58,11 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="flex size-full flex-row items-center justify-center  gap-6">
+    <div className="flex size-full flex-row max-md:flex-col items-center justify-center  gap-6">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="h-full w-[70%] gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
+          className="h-full w-[70%] max-md:w-full gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
         >
           <h1 className="pb-6 font-mont text-3xl ">Create Adoption Post</h1>
           <FormField
@@ -122,14 +122,14 @@ const UserLoginForm = () => {
           </Button>
         </form>
       </Form>
-      <div className="relative flex h-full w-[30%] overflow-hidden rounded-xl bg-primary-foreground p-4">
-        <div className="flex w-full flex-col gap-4 overflow-auto px-4">
+      <div className="relative flex h-full w-[30%] max-md:w-full overflow-hidden rounded-xl bg-primary-foreground p-4">
+        <div className="flex w-full flex-col max-md:flex-row gap-4 overflow-auto px-4">
           {images.map((image, index) => (
             <img
               src={image}
               key={index}
               alt=""
-              className="h-1/3 w-full rounded-lg object-cover"
+              className="h-1/3 w-full max-md:h-full max-md:w-1/3 rounded-lg object-cover"
             />
           ))}
         </div>

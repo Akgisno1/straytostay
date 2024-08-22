@@ -14,7 +14,7 @@ const TopQuestions = async () => {
         <Link
           href={`/question/${question._id}`}
           key={question._id}
-          className="text-xl font-mont line-clamp-1  text-gray-500 hover:text-primary"
+          className="text-lg font-mont line-clamp-1  text-gray-500 hover:text-primary"
         >
           {question.content}
         </Link>

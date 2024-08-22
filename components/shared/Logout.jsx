@@ -4,22 +4,31 @@ import { Button } from "../ui/button";
 import { logoutUser } from "../../lib/actions/user.action";
 import { useToast } from "../ui/use-toast";
 import { useRouter, usePathname } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "../ui/hover-card";
+import { logoutNgo } from "../../lib/actions/ngo.action";
 
 const Logout = () => {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  const { currentUser, currentNgo } = useAuth();
 
   const handlelogout = async () => {
     try {
-      await logoutUser();
+      if (currentUser) {
+        await logoutUser();
+        localStorage.removeItem("user");
+      }
+      if (currentNgo) {
+        await logoutNgo();
+        localStorage.removeItem("ngo");
+      }
 
-      localStorage.removeItem("user");
       router.push("/");
 
       window.location.reload();

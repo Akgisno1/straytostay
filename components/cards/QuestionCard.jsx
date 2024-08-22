@@ -18,7 +18,7 @@ const QuestionCard = async ({
   return (
     <div className="flex  flex-col rounded-lg bg-primary-foreground p-4 pt-2 text-card-foreground shadow-md">
       <div className="flex-row flex justify-between items-center">
-        <Link href={`/user/${user.id}`} className="flex flex-row">
+        <Link href={`/user/${user._id}`} className="flex flex-row">
           <Avatar>
             <AvatarImage src="/default-avatar.jpg" alt={user.username} />
             <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
@@ -29,7 +29,12 @@ const QuestionCard = async ({
         </Link>
         <div>icons</div>
       </div>
-      <div className="font-mont font-lg ml-12">{content}</div>
+      <Link
+        href={`/question/${questionId}`}
+        className="font-mont font-lg ml-12"
+      >
+        {content}
+      </Link>
       <div className="flex flex-row items-center ml-12 gap-6">
         <div className="text-sm text-gray-500">{views} views</div>
         <div className="text-sm text-gray-500">{formattedDate}</div>

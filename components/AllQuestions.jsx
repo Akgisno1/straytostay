@@ -15,7 +15,7 @@ const AllPosts = async () => {
       <div className="flex flex-col gap-6 max-sm:gap-4 w-[100%]">
         {result.map((question) => (
           <QuestionCard
-            questionId={question.id}
+            questionId={question._id}
             content={question.content}
             views={question.views}
             upvotes={question.upvotes}

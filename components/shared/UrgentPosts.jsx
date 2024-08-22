@@ -11,8 +11,8 @@ const UrgentPosts = async () => {
       </h1>
       {posts.map((post) => (
         <Link
-          href={`/post/${post.id}`}
-          key={post.id}
+          href={`/post/${post._id}`}
+          key={post._id}
           className=" flex h-[200] w-full flex-col rounded-lg bg-primary-foreground  text-card-foreground shadow-md hover:bg-destructive max-md:w-[96%]"
         >
           <img

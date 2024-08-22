@@ -10,7 +10,7 @@ const AllPosts = async () => {
   });
 
   return (
-    <div className="flex size-full flex-wrap items-start justify-center gap-6 overflow-auto  rounded-xl bg-secondary px-6 py-8">
+    <div className="flex size-full flex-wrap items-start  gap-6 overflow-auto  rounded-xl bg-secondary px-6 py-8">
       {posts.map((post) => (
         <PostCard
           key={post._id}

@@ -9,7 +9,7 @@ import { useAuth } from "../context/AuthContext";
 
 const TopBar = () => {
   const pathname = usePathname();
-  const { currentUser } = useAuth();
+  const { currentUser, currentNgo } = useAuth();
 
   return (
     <div className="flex h-[9vh] w-full flex-row items-center justify-between p-4">
@@ -18,13 +18,13 @@ const TopBar = () => {
           StraytoStay
         </h2>
       </div>
-      {!(pathname === "/access" || pathname === "/access-ngo") && (
-        <div className="flex flex-row items-center justify-center rounded-xl bg-transparent max-md:hidden">
-          <GlobalSearch />
-        </div>
-      )}
+
+      <div className="flex flex-row items-center justify-center rounded-xl bg-transparent max-md:hidden">
+        <GlobalSearch />
+      </div>
+
       <div className="flex flex-row items-center justify-end gap-4">
-        {currentUser ? (
+        {currentUser || currentNgo ? (
           <ProfileAvatar />
         ) : (
           <Link
