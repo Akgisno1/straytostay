@@ -34,7 +34,7 @@ const CreateAnswerForm = (questionId) => {
   const onSubmit = async (values) => {
     try {
       await createAnswer({
-        questionId,
+        questionId: questionId.questionId,
         authorId: currentUser?._id || currentNgo?._id,
         content: values.content,
         path: pathname,
