@@ -17,11 +17,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import UploadWidget from "../shared/UploadWidget";
 import { createNgo } from "../../lib/actions/ngo.action";
+import { useRouter } from "next/navigation";
 
 const NgoRegisterForm = () => {
   const { toast } = useToast();
   const [images, setImages] = useState([]);
   const [cover, setCover] = useState([]);
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(ngoValidationSchema),
   });
@@ -39,7 +41,7 @@ const NgoRegisterForm = () => {
         avatar: images[0],
         cover: cover[0],
       });
-      window.location.reload();
+      router.push("/ngoaccess");
       toast({
         title: "Registered Ngo",
       });

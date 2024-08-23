@@ -4,6 +4,16 @@ import Link from "next/link";
 
 const TopQuestions = async () => {
   const result = await getTopQuestions();
+  if (result.length === 0) {
+    return (
+      <div className=" flex w-full flex-col  gap-4 mt-4 overflow-auto">
+        <h1 className="font-oxo text-3xl font-semibold text-primary">
+          Top Questions
+        </h1>
+        <div className="text-2xl font-mono">No top Question</div>
+      </div>
+    );
+  }
   return (
     <div className=" flex w-full flex-col  gap-4 mt-4 overflow-auto">
       <h1 className="font-oxo text-3xl font-semibold text-primary">

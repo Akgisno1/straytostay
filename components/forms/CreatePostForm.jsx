@@ -25,7 +25,7 @@ import UploadWidget from "../shared/UploadWidget";
 const UserLoginForm = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const { currentUser } = useAuth();
+  const { currentUser, currentNgo } = useAuth();
   const [images, setImages] = useState([]);
 
   const form = useForm({
@@ -38,7 +38,7 @@ const UserLoginForm = () => {
   const onSubmit = async (values) => {
     try {
       await createPost({
-        authorusername: currentUser.username,
+        authorusername: currentUser?.username || currentNgo?.username,
         title: values.title,
         description: values.description,
         images,

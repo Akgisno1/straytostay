@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "../ui/use-toast";
-
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import {
   Form,
@@ -21,6 +21,7 @@ import { createUser } from "../../lib/actions/user.action";
 const UserRegisterForm = () => {
   const { toast } = useToast();
   const [images, setImages] = useState([]);
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(userValidationSchema),
@@ -38,7 +39,7 @@ const UserRegisterForm = () => {
         bio: values.bio,
         avatar: images[0],
       });
-      window.location.reload();
+      router.push("/useraccess");
       toast({
         title: "Registered user",
       });

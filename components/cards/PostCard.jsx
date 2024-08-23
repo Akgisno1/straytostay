@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import { getUserByName } from "../../lib/actions/user.action";
 
 const PostCard = ({
   postId,
@@ -20,13 +21,13 @@ const PostCard = ({
   createdAt,
 }) => {
   const formattedDate = getTimestamp(createdAt);
-
+  const author = getUserByName(authorusername);
   return (
     <div className=" flex h-[430px] w-[48%] flex-col rounded-lg bg-primary-foreground p-4 text-card-foreground shadow-md max-md:w-[96%]">
       <div className="mb-4 flex flex-row items-center justify-between">
         <div className="flex flex-row ">
           <Avatar>
-            <AvatarImage src="/default-avatar.jpg" alt={authorusername} />
+            <AvatarImage src={author.avatar} alt={authorusername} />
             <AvatarFallback>
               {authorusername.charAt(0).toUpperCase()}
             </AvatarFallback>

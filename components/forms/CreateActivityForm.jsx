@@ -26,7 +26,7 @@ import { usePathname } from "next/navigation";
 const UserLoginForm = () => {
   const { toast } = useToast();
   const pathname = usePathname();
-  const { currentUser } = useAuth();
+  const { currentNgo } = useAuth();
   const [images, setImages] = useState([]);
 
   const form = useForm({
@@ -35,11 +35,14 @@ const UserLoginForm = () => {
       urgency: false,
     },
   });
+  if (!currentNgo) {
+    return null;
+  }
 
   const onSubmit = async (values) => {
     try {
       await createActivity({
-        authorId: currentUser._id,
+        authorId: currentNgo._id,
         title: values.title,
         images,
         path: pathname,
@@ -57,7 +60,7 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="flex size-full flex-col items-center justify-center  gap-6">
+    <div className="flex h-full flex-col items-center justify-center  gap-6 max-lg:hidden w-2/5 bg-secondary p-6 rounded-xl relative overflow-auto">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

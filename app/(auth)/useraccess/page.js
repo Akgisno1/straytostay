@@ -52,7 +52,7 @@ const page = () => {
         <Link
           href="/ngoaccess"
           variant="outline"
-          className="absolute left-[10%] top-[5%] max-md:left-[5%] z-10 rounded bg-primary-foreground p-2 font-oxo text-xl text-primary max-sm:text-base"
+          className="absolute left-[10%] top-[5%] max-md:left-[5%] z-10 rounded bg-green-500 p-2 font-oxo text-xl text-primary max-sm:text-base"
         >
           Login/Register as an NGO
         </Link>

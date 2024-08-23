@@ -11,21 +11,21 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/form";
-import { createQuestionSchema } from "../../lib/validation";
+import { createAnswerSchema } from "../../lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useAuth } from "../../context/AuthContext";
 import { Textarea } from "../ui/textarea";
 
-import { createQuestion } from "../../lib/actions/question.action";
+import { createAnswer } from "../../lib/actions/answer.action";
 
-const CreateQuestionForm = () => {
+const CreateAnswerForm = (questionId) => {
   const { toast } = useToast();
   const pathname = usePathname();
   const { currentUser, currentNgo } = useAuth();
 
   const form = useForm({
-    resolver: zodResolver(createQuestionSchema),
+    resolver: zodResolver(createAnswerSchema),
     defaultValues: {
       content: "",
     },
@@ -33,40 +33,46 @@ const CreateQuestionForm = () => {
 
   const onSubmit = async (values) => {
     try {
-      await createQuestion({
+      await createAnswer({
+        questionId,
         authorId: currentUser?._id || currentNgo?._id,
         content: values.content,
         path: pathname,
       });
       form.reset();
       toast({
-        title: "Question Created",
+        title: "Answer Created",
       });
     } catch (error) {
       console.log(error);
       toast({
-        title: "Error creating Question",
+        title: "Error creating Answer",
         variant: "destructive",
       });
     }
   };
+  if (!currentNgo && !currentUser) {
+    return null;
+  }
 
   return (
     <div className="flex w-full flex-row items-center justify-center  gap-6">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="size-full gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
+          className="flex size-full   flex-row items-center gap-4 rounded-xl bg-primary-foreground pt-4 font-mont"
         >
-          <h1 className=" font-mont text-3xl ">Question the Community</h1>
-
           <FormField
+            className="h-10 w-full"
             control={form.control}
             name="content"
             render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea {...field} className="h-12 bg-[hsl(var(--card))]" />
+              <FormItem className="h-10 w-full">
+                <FormControl className="h-10 w-full">
+                  <Textarea
+                    {...field}
+                    className="h-10 w-full bg-[hsl(var(--card))]"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,9 +81,9 @@ const CreateQuestionForm = () => {
 
           <Button
             type="submit"
-            className="mt-8 bg-green-700 font-mont text-xl font-bold hover:bg-green-500"
+            className=" bg-green-700 font-mont text-sm font-bold hover:bg-green-500"
           >
-            Ask Question
+            Answer
           </Button>
         </form>
       </Form>
@@ -85,4 +91,4 @@ const CreateQuestionForm = () => {
   );
 };
 
-export default CreateQuestionForm;
+export default CreateAnswerForm;
