@@ -51,7 +51,10 @@ const ActivityCard = ({
     >
       <div className="mb-4 flex flex-row items-center justify-between">
         {ngo && ( // Only render this part if ngo data is loaded
-          <Link href={`/ngo/${ngo._id}`} className="flex flex-row items-center">
+          <Link
+            href={`/user/${ngo._id}`}
+            className="flex flex-row items-center"
+          >
             <Avatar>
               <AvatarImage src={ngo.avatar} alt={ngo.name} />
               <AvatarFallback>
@@ -81,13 +84,13 @@ const ActivityCard = ({
 
       <div className="mb-2 mt-4 truncate text-xl font-semibold">{title}</div>
       <div className="flex flex-row items-center justify-start gap-6">
-        <div className="text-sm text-gray-500">{views} views</div>
-
         <LikeButton
           activityId={postId}
           initialLikes={likes}
           userId={currentNgo?._id || currentUser?._id}
         />
+        <div className="text-sm text-gray-500">{views} views</div>
+
         <div className="ml-auto text-sm text-gray-500">{formattedDate}</div>
       </div>
     </div>

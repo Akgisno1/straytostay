@@ -3,9 +3,9 @@ import AllQuestions from "../../../components/AllQuestions";
 import TopQuestions from "../../../components/shared/TopQuestions";
 const page = () => {
   return (
-    <div className="flex size-full flex-row gap-8 p-8 max-sm:p-3 overflow-auto">
+    <div className="flex size-full flex-row gap-4 overflow-auto p-4 max-sm:p-3">
       <AllQuestions />
-      <div className="max-lg:hidden h-full w-2/5 bg-secondary p-6 rounded-xl relative overflow-auto">
+      <div className="relative h-full w-2/5 overflow-auto rounded-xl bg-secondary p-4 max-lg:hidden">
         <CreateQuestionForm />
         <TopQuestions />
       </div>

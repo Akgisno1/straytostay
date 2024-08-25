@@ -4,7 +4,7 @@ import AllActivities from "../../../components/AllActivities";
 
 const page = () => {
   return (
-    <div className="flex size-full flex-row gap-8 p-8 max-sm:p-3 overflow-auto">
+    <div className="flex size-full flex-row gap-4 overflow-auto p-4 max-sm:p-3">
       <AllActivities />
       <CreateActivityForm />
     </div>

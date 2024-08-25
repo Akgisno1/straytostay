@@ -9,7 +9,7 @@ import {
 } from "../../../components/ui/tabs.jsx";
 import Link from "next/link";
 import { ModeToggle } from "../../../components/ModeToggle.jsx";
-import { Button } from "../../../components/ui/button.jsx";
+// import { Button } from "../../../components/ui/button.jsx";
 
 const page = () => {
   return (
@@ -35,7 +35,7 @@ const page = () => {
         </div>
       </div>
       <div className=" relative flex h-full w-1/2 items-center justify-center max-md:w-full">
-        <div className=" w-3/5 max-md:w-[90%] mt-4">
+        <div className=" mt-4 w-3/5 max-md:w-[90%]">
           <Tabs defaultValue="login">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Login</TabsTrigger>
@@ -52,11 +52,11 @@ const page = () => {
         <Link
           href="/ngoaccess"
           variant="outline"
-          className="absolute left-[10%] top-[5%] max-md:left-[5%] z-10 rounded bg-green-500 p-2 font-oxo text-xl text-primary max-sm:text-base"
+          className="absolute left-[10%] top-[5%] z-10 rounded bg-green-500 p-2 font-oxo text-xl text-primary max-md:left-[5%] max-sm:text-base"
         >
           Login/Register as an NGO
         </Link>
-        <div className="absolute right-[10%] top-[5%] max-md:right-[5%] z-10 flex flex-row items-center gap-4">
+        <div className="absolute right-[10%] top-[5%] z-10 flex flex-row items-center gap-4 max-md:right-[5%]">
           <Link
             href="/"
             className=" rounded bg-primary p-2 font-oxo text-xl text-primary-foreground max-sm:text-base"

@@ -3,9 +3,9 @@ import AllPosts from "../../../components/AllPosts";
 import UrgentPosts from "../../../components/shared/UrgentPosts";
 const page = () => {
   return (
-    <div className="flex size-full flex-row gap-8 p-8 overflow-auto">
+    <div className="flex size-full flex-row gap-4 overflow-auto p-4 ">
       <AllPosts />
-      <div className="max-lg:hidden h-full w-2/5">
+      <div className="h-full w-2/5 max-lg:hidden">
         <UrgentPosts />
       </div>
     </div>

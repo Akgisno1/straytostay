@@ -1,29 +1,33 @@
-import React from "react";
+// components/UrgentPosts.js
+
+"use client";
+import React, { useState, useEffect } from "react";
 import { getUrgentPosts } from "../../lib/actions/post.action";
-import Link from "next/link";
-const UrgentPosts = async () => {
-  const posts = await getUrgentPosts();
+import UrgentPostCard from "../cards/UrgentPostCard"; // Import the PostCard component
+
+const UrgentPosts = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const fetchedPosts = await getUrgentPosts();
+        setPosts(fetchedPosts);
+      } catch (error) {
+        console.error("Failed to fetch posts", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
-    <div className="flex size-full flex-col items-start  gap-4 overflow-auto  rounded-xl bg-secondary px-6 pb-8 pt-4">
+    <div className="flex size-full flex-col items-start gap-4 overflow-auto rounded-xl bg-secondary px-6 py-4">
       <h1 className="font-oxo text-3xl font-semibold text-red-500">
         Urgent Adoptions
       </h1>
       {posts.map((post) => (
-        <Link
-          href={`/post/${post._id}`}
-          key={post._id}
-          className=" flex h-[200] w-full flex-col rounded-lg bg-primary-foreground  text-card-foreground shadow-md hover:bg-destructive max-md:w-[96%]"
-        >
-          <img
-            src={post.images[0]}
-            className="h-32 w-full rounded-t-lg object-cover"
-          />
-
-          <div className=" p-2 truncate whitespace-nowrap text-xl font-semibold ">
-            {post.title}
-          </div>
-        </Link>
+        <UrgentPostCard key={post._id} post={post} />
       ))}
     </div>
   );

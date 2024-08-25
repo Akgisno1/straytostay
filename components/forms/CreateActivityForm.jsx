@@ -60,7 +60,7 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-center  gap-6 max-lg:hidden w-2/5 bg-secondary p-6 rounded-xl relative overflow-auto">
+    <div className="relative flex h-full w-2/5 flex-col  items-center justify-center gap-4 overflow-auto rounded-xl bg-secondary p-4 max-lg:hidden">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

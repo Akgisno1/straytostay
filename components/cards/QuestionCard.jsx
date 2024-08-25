@@ -31,7 +31,6 @@ const QuestionCard = ({
         console.error("Failed to fetch user data:", error);
       }
     };
-
     fetchUser();
   }, [authorId]);
 
