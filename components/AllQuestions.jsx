@@ -23,10 +23,7 @@ const AllQuestions = () => {
 
   if (questions.length === 0) {
     return (
-      <div className="flex w-full flex-col items-start gap-6 overflow-auto rounded-xl bg-secondary px-6 pb-8 pt-4 max-sm:gap-4 max-sm:p-4">
-        <h1 className="font-oxo text-3xl font-bold text-primary">
-          All Questions
-        </h1>
+      <div className="flex w-full flex-col items-start gap-6 overflow-auto rounded-xl bg-secondary p-4 max-sm:gap-4 ">
         <div className="font-mont text-2xl">No Questions to Show.</div>
       </div>
     );
@@ -45,7 +42,7 @@ const AllQuestions = () => {
         />
       </div>
 
-      <div className="flex w-full flex-col gap-6 max-sm:gap-4">
+      <div className="flex w-full flex-col gap-4">
         {questions.map((question) => (
           <QuestionCard
             key={question._id}

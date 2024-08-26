@@ -1,28 +1,60 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { getActivities } from "../lib/actions/activity.action";
+import FilterComponent from "./shared/FilterComponent";
 import ActivityCard from "../components/cards/ActivityCard";
 
-const AllPosts = async () => {
-  const result = await getActivities({
-    filter: "popular",
-    page: 1,
-    pageSize: 10,
-  });
+const AllPosts = () => {
+  const [filter, setFilter] = useState("newest");
+  const filters = ["newest", "frequent", "popular"];
+  const [activity, setactivity] = useState([]);
+
+  useEffect(() => {
+    const fetchactivity = async () => {
+      try {
+        const fetchedactivity = await getActivities(filter);
+        setactivity(fetchedactivity);
+      } catch (error) {
+        console.error("Failed to fetch activities", error);
+      }
+    };
+    fetchactivity();
+  }, [filter]);
+
+  if (activity.length === 0) {
+    return (
+      <div className="flex w-full flex-col items-start gap-6 overflow-auto rounded-xl bg-secondary p-4 max-sm:gap-4 ">
+        <div className="font-mont text-2xl">No Activities to Show.</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex size-full flex-wrap items-start  gap-6 overflow-auto  rounded-xl bg-secondary px-6 py-8">
-      {result.map((post) => (
-        <ActivityCard
-          key={post._id}
-          postId={post._id}
-          authorId={post.authorId}
-          title={post.title}
-          images={post.images}
-          likes={post.likes}
-          createdAt={post.createdAt}
-          views={post.views}
+    <div className="flex size-full flex-col items-start gap-4  overflow-auto  rounded-xl bg-secondary p-4">
+      <div className="flex flex-row gap-2 ">
+        <h1 className="font-oxo text-3xl font-bold text-primary max-sm:hidden">
+          All Questions
+        </h1>
+        <FilterComponent
+          filter={filter}
+          setFilter={setFilter}
+          filters={filters}
         />
-      ))}
+      </div>
+      <div className="flex w-full flex-wrap gap-4 ">
+        {activity.map((post) => (
+          <ActivityCard
+            key={post._id}
+            postId={post._id}
+            authorId={post.authorId}
+            title={post.title}
+            images={post.images}
+            likes={post.likes}
+            createdAt={post.createdAt}
+            views={post.views}
+          />
+        ))}
+      </div>
     </div>
   );
 };
