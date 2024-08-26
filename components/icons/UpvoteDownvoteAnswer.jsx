@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { toggleVote } from "../../lib/actions/question.action"; // Use the unified action
+import { toggleVoteAnswer } from "../../lib/actions/answer.action"; // Use the unified action
 import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
-const UpvoteDownvote = ({
-  questionId,
+const UpvoteDownvoteAnswer = ({
+  AnswerId,
   initialUpvotes,
   initialDownvotes,
   userId,
@@ -29,7 +29,7 @@ const UpvoteDownvote = ({
   }, [initialUpvotes, initialDownvotes, userId]);
 
   const handleVote = async (actionType) => {
-    const result = await toggleVote(questionId, userId, actionType);
+    const result = await toggleVoteAnswer(AnswerId, userId, actionType);
 
     // Update local state based on the result
     setUpvotesCount(result?.upvotes);
@@ -58,4 +58,4 @@ const UpvoteDownvote = ({
   );
 };
 
-export default UpvoteDownvote;
+export default UpvoteDownvoteAnswer;

@@ -34,14 +34,17 @@ const AllQuestions = () => {
 
   return (
     <div className="flex w-full flex-col items-start gap-6 overflow-auto rounded-xl bg-secondary p-4 max-sm:gap-4">
-      <FilterComponent
-        filter={filter}
-        setFilter={setFilter}
-        filters={filters}
-      />
-      <h1 className="font-oxo text-3xl font-bold text-primary max-sm:hidden">
-        All Questions
-      </h1>
+      <div className="flex flex-row gap-2 ">
+        <h1 className="font-oxo text-3xl font-bold text-primary max-sm:hidden">
+          All Questions
+        </h1>
+        <FilterComponent
+          filter={filter}
+          setFilter={setFilter}
+          filters={filters}
+        />
+      </div>
+
       <div className="flex w-full flex-col gap-6 max-sm:gap-4">
         {questions.map((question) => (
           <QuestionCard
