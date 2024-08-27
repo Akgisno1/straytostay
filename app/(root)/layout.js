@@ -1,6 +1,6 @@
 import "../globals.css";
 import React from "react";
-import BottomBar from "../../components/BottomBar";
+import BottomBar from "../../components/Bottombar.jsx";
 import LeftSidebar from "../../components/LeftSidebar";
 
 import TopBar from "../../components/TopBar";
