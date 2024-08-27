@@ -29,7 +29,6 @@ const ActivityInfo = () => {
         const fetchedactivity = await getActivityById(activityId);
         if (fetchedactivity) {
           setactivity(fetchedactivity);
-          console.log(fetchedactivity);
         } else {
           console.error("activity not found");
         }

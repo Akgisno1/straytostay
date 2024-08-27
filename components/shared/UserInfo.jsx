@@ -12,7 +12,7 @@ import UserQuestions from "./UserQuestions";
 const UserInfo = () => {
   const params = useParams();
   const userId = params.id;
-  console.log(userId);
+
   const [user, setUser] = useState(null);
   const [isngo, setisngo] = useState(false);
 

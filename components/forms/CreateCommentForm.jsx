@@ -31,12 +31,6 @@ const CreateCommentForm = (activityId) => {
 
   const onSubmit = async (values) => {
     try {
-      console.log({
-        activityId: activityId.activityId,
-        authorId: currentUser?._id || currentNgo?._id,
-        content: values.content, // Make sure to use content for the comment body
-        path: pathname,
-      });
       await createComment({
         activityId: activityId.activityId,
         authorId: currentUser?._id || currentNgo?._id,

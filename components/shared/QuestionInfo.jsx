@@ -28,7 +28,6 @@ const QuestionInfo = () => {
         const fetchedQuestion = await getQuestionById(questionId);
         if (fetchedQuestion) {
           setQuestion(fetchedQuestion);
-          console.log(fetchedQuestion);
         } else {
           console.error("Question not found");
         }

@@ -5,6 +5,9 @@ import { Toaster } from "../components/ui/toaster.jsx";
 import { AuthContextProvider } from "../context/AuthContext.jsx";
 export const metadata = {
   title: "StraytoStay",
+  icons: {
+    icon: "/straytostay.png",
+  },
 };
 
 export default function RootLayout({ children }) {
