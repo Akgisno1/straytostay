@@ -1,6 +1,6 @@
 import React from "react";
 import { getTimestamp } from "../../lib/utils";
-import ActivityDeleteButton from "../icons/ActivityDeleteButton";
+// import ActivityDeleteButton from "../icons/ActivityDeleteButton";
 
 const UserActivityCard = ({
   activityId,
@@ -26,7 +26,7 @@ const UserActivityCard = ({
             <div>{likes.length} likes</div>
             <div>{views} views</div>
           </div>
-          <ActivityDeleteButton activityId={activityId} userId={userId} />
+          {/* <ActivityDeleteButton activityId={activityId} userId={userId} /> */}
         </div>
         <div className="my-2 line-clamp-1 text-xl font-semibold">{title}</div>
       </div>

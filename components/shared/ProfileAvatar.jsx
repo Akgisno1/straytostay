@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -19,7 +19,7 @@ const ProfileAvatar = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { currentUser, currentNgo } = useAuth();
-  const pathname = usePathname();
+  const id = currentUser?._id || currentNgo?._id;
   const handlelogout = async () => {
     try {
       if (currentUser) {
@@ -70,14 +70,14 @@ const ProfileAvatar = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href="/">View Profile</Link>
+          <Link href={`/user/${id}`}>View Profile</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        {/* <DropdownMenuItem>
           <Link href="/">Edit Profile</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
+        </DropdownMenuItem> */}
+        {/* <DropdownMenuItem>
           <Link href="/">View Chats</Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         <DropdownMenuItem>
           <div onClick={handlelogout}>Logout</div>
         </DropdownMenuItem>

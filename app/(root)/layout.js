@@ -1,6 +1,6 @@
 import "../globals.css";
 import React from "react";
-// import BottomBar from "../../components/BottomBar";
+import BottomBar from "../../components/BottomBar";
 import LeftSidebar from "../../components/LeftSidebar";
 
 import TopBar from "../../components/TopBar";
@@ -15,8 +15,7 @@ export default function RootLayout({ children }) {
           {children}
         </section>
       </main>
-
-      {/* <BottomBar /> */}
+      <BottomBar />
     </>
   );
 }

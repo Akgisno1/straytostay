@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
 import { getUserById } from "../../lib/actions/user.action";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { checkisngo } from "../../lib/actions/ngo.action";
@@ -8,11 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import UserPosts from "./UserPosts";
 import UserActivities from "./UserActivities";
 import UserQuestions from "./UserQuestions";
-
+import { useAuth } from "../../context/AuthContext";
 const UserInfo = () => {
-  const params = useParams();
-  const userId = params.id;
-  console.log(userId);
+  const { currentUser, currentNgo } = useAuth();
+  const userId = currentUser?._id || currentNgo?._id;
   const [user, setUser] = useState(null);
   const [isngo, setisngo] = useState(false);
 

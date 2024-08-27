@@ -23,6 +23,7 @@ const CreateQuestionForm = () => {
   const { toast } = useToast();
   const pathname = usePathname();
   const { currentUser, currentNgo } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
 
   const form = useForm({
     resolver: zodResolver(createQuestionSchema),
@@ -51,6 +52,9 @@ const CreateQuestionForm = () => {
     }
   };
 
+  if (!isloggedIn) {
+    return null;
+  }
   return (
     <div className="flex w-full flex-row items-center justify-center  gap-6">
       <Form {...form}>

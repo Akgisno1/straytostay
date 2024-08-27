@@ -21,6 +21,7 @@ const ActivityInfo = () => {
   const [user, setUser] = useState(null);
   const [viewIncremented, setViewIncremented] = useState(false); // State to track if views were incremented
   const { currentNgo, currentUser } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
 
   useEffect(() => {
     const fetchactivity = async () => {
@@ -89,11 +90,13 @@ const ActivityInfo = () => {
                 </Link>
               )}
               <div className="flex items-center gap-4">
-                <LikeButton
-                  activityId={activityId}
-                  initialLikes={activity?.likes}
-                  userId={currentNgo?._id || currentUser?._id}
-                />
+                {isloggedIn && (
+                  <LikeButton
+                    activityId={activityId}
+                    initialLikes={activity?.likes}
+                    userId={currentNgo?._id || currentUser?._id}
+                  />
+                )}
               </div>
             </div>
             <div className="flex flex-row  items-center overflow-y-hidden ">

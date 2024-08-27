@@ -11,6 +11,7 @@ import LikeCommentButton from "../icons/LikeCommentButton";
 const CommentCard = ({ commentId, content, likes, authorId, createdAt }) => {
   const [user, setUser] = useState(null);
   const { currentNgo, currentUser } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
 
   const formattedDate = getTimestamp(createdAt);
   useEffect(() => {
@@ -42,11 +43,13 @@ const CommentCard = ({ commentId, content, likes, authorId, createdAt }) => {
           </Link>
         )}
         <div className="flex items-center gap-4">
-          <LikeCommentButton
-            commentId={commentId}
-            initialLikes={likes}
-            userId={currentNgo?._id || currentUser?._id}
-          />
+          {isloggedIn && (
+            <LikeCommentButton
+              commentId={commentId}
+              initialLikes={likes}
+              userId={currentNgo?._id || currentUser?._id}
+            />
+          )}
         </div>
       </div>
       <div className="my-2 font-mont text-lg font-bold max-sm:text-sm">

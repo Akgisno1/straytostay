@@ -21,6 +21,7 @@ const QuestionCard = ({
   const [user, setUser] = useState(null);
   const [showCreateAnswerForm, setShowCreateAnswerForm] = useState(false);
   const { currentNgo, currentUser } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
 
   const formattedDate = getTimestamp(createdAt);
 
@@ -53,12 +54,14 @@ const QuestionCard = ({
           </Link>
         )}
         <div className="flex items-center gap-4">
-          <UpvoteDownvote
-            questionId={questionId}
-            initialUpvotes={upvotes}
-            initialDownvotes={downvotes}
-            userId={currentUser?._id || currentNgo?._id}
-          />
+          {isloggedIn && (
+            <UpvoteDownvote
+              questionId={questionId}
+              initialUpvotes={upvotes}
+              initialDownvotes={downvotes}
+              userId={currentUser?._id || currentNgo?._id}
+            />
+          )}
         </div>
       </div>
       <Link
@@ -70,12 +73,14 @@ const QuestionCard = ({
       <div className="flex flex-row items-center gap-6 text-sm max-sm:text-xs">
         <div className="text-gray-500">{views} views</div>
         <div className="text-gray-500">{formattedDate}</div>
-        <button
-          onClick={() => setShowCreateAnswerForm(!showCreateAnswerForm)}
-          className="ml-auto text-blue-500"
-        >
-          {showCreateAnswerForm ? "Hide" : "Give Answer"}
-        </button>
+        {isloggedIn && (
+          <button
+            onClick={() => setShowCreateAnswerForm(!showCreateAnswerForm)}
+            className="ml-auto text-blue-500"
+          >
+            {showCreateAnswerForm ? "Hide" : "Give Answer"}
+          </button>
+        )}
       </div>
       {showCreateAnswerForm && (
         <div className="flex w-full flex-col gap-4">

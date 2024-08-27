@@ -1,6 +1,6 @@
 import React from "react";
 import { getTimestamp } from "../../lib/utils";
-import PostDeleteButton from "../icons/PostDeleteButton"; // Import the delete button
+// import PostDeleteButton from "../icons/PostDeleteButton"; // Import the delete button
 
 const UserPostCard = ({
   postId,
@@ -29,7 +29,7 @@ const UserPostCard = ({
               </div>
             )}
           </div>
-          <PostDeleteButton postId={postId} userId={userId} />
+          {/* <PostDeleteButton postId={postId} userId={userId} /> */}
         </div>
         <div className="my-2 line-clamp-1 text-xl font-semibold">{title}</div>
         <div className="mt-1 line-clamp-2 overflow-hidden">{description}</div>

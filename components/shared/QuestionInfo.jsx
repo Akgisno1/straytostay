@@ -21,7 +21,7 @@ const QuestionInfo = () => {
   const [user, setUser] = useState(null);
   const [viewIncremented, setViewIncremented] = useState(false); // State to track if views were incremented
   const { currentNgo, currentUser } = useAuth();
-
+  const isloggedIn = currentUser || currentNgo;
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -92,12 +92,14 @@ const QuestionInfo = () => {
                 </Link>
               )}
               <div className="flex items-center gap-4">
-                <UpvoteDownvote
-                  questionId={questionId}
-                  initialUpvotes={question.upvotes}
-                  initialDownvotes={question.downvotes}
-                  userId={currentUser?._id || currentNgo?._id}
-                />
+                {isloggedIn && (
+                  <UpvoteDownvote
+                    questionId={questionId}
+                    initialUpvotes={question.upvotes}
+                    initialDownvotes={question.downvotes}
+                    userId={currentUser?._id || currentNgo?._id}
+                  />
+                )}
               </div>
             </div>
             <div className="my-2 font-mont text-lg font-bold max-sm:text-sm">

@@ -18,6 +18,7 @@ const QuestionCard = ({
 }) => {
   const [user, setUser] = useState(null);
   const { currentNgo, currentUser } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
 
   const formattedDate = getTimestamp(createdAt);
 
@@ -50,12 +51,14 @@ const QuestionCard = ({
           </Link>
         )}
         <div className="flex items-center gap-4">
-          <UpvoteDownvoteAnswer
-            AnswerId={AnswerId}
-            initialUpvotes={upvotes}
-            initialDownvotes={downvotes}
-            userId={currentUser?._id || currentNgo?._id}
-          />
+          {isloggedIn && (
+            <UpvoteDownvoteAnswer
+              AnswerId={AnswerId}
+              initialUpvotes={upvotes}
+              initialDownvotes={downvotes}
+              userId={currentUser?._id || currentNgo?._id}
+            />
+          )}
         </div>
       </div>
       <div className="my-2 font-mont text-lg font-bold max-sm:text-sm">

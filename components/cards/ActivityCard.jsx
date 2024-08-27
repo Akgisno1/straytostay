@@ -27,6 +27,8 @@ const ActivityCard = ({
 }) => {
   const formattedDate = getTimestamp(createdAt);
   const { currentUser, currentNgo } = useAuth();
+  const isloggedIn = currentUser || currentNgo;
+
   const [showCreateCommentForm, setShowCreateCommentForm] = useState(false);
   // State to store the fetched NGO data
   const [ngo, setNgo] = useState(null);
@@ -91,22 +93,26 @@ const ActivityCard = ({
       >
         {title}
       </Link>
-      <div className="flex flex-row items-center justify-between gap-6">
+      <div className="flex flex-row items-center justify-between gap-6 max-sm:text-xs">
         <div className="flex flex-row items-center gap-2">
-          <LikeButton
-            activityId={postId}
-            initialLikes={likes}
-            userId={currentNgo?._id || currentUser?._id}
-          />
+          {isloggedIn && (
+            <LikeButton
+              activityId={postId}
+              initialLikes={likes}
+              userId={currentNgo?._id || currentUser?._id}
+            />
+          )}
           <div className="text-sm text-gray-500">{views} views</div>
           <div className="ml-auto text-sm text-gray-500">{formattedDate}</div>
         </div>
-        <button
-          onClick={() => setShowCreateCommentForm(!showCreateCommentForm)}
-          className="ml-auto text-blue-500"
-        >
-          {showCreateCommentForm ? "Hide" : "Give Comments"}
-        </button>
+        {isloggedIn && (
+          <button
+            onClick={() => setShowCreateCommentForm(!showCreateCommentForm)}
+            className="ml-auto text-blue-500"
+          >
+            {showCreateCommentForm ? "Hide" : "Give Comments"}
+          </button>
+        )}
       </div>
       {showCreateCommentForm && (
         <div className="absolute bottom-0 left-0 z-10 w-full translate-y-full flex-col  gap-4 rounded-xl border-2 border-green-500 bg-primary-foreground p-4">
