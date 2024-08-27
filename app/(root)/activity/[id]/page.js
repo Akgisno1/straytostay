@@ -5,7 +5,9 @@ const page = () => {
     <div className="flex size-full flex-row gap-4 overflow-auto p-4 max-sm:p-3">
       <ActivityInfo />
 
-      <CreateActivityForm />
+      <div className="size-full max-lg:hidden">
+        <CreateActivityForm />
+      </div>
     </div>
   );
 };

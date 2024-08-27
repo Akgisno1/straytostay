@@ -60,7 +60,7 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="relative flex h-full w-2/5 flex-col  items-center justify-center gap-4 overflow-auto rounded-xl bg-secondary p-4 max-lg:hidden">
+    <div className="relative flex h-full w-2/5 flex-col  items-center justify-center gap-4  rounded-xl bg-secondary p-4  max-lg:w-full ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -91,7 +91,7 @@ const UserLoginForm = () => {
           </Button>
         </form>
       </Form>
-      <div className="relative flex size-full overflow-hidden rounded-xl bg-primary-foreground p-4">
+      <div className="relative flex size-full overflow-hidden rounded-xl bg-primary-foreground p-4 min-h-[200px]">
         <div className="flex w-full flex-row gap-4 overflow-auto px-4">
           {images.map((image, index) => (
             <img

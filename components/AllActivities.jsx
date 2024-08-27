@@ -30,10 +30,10 @@ const AllPosts = () => {
   }
 
   return (
-    <div className="flex size-full flex-col items-start gap-4  overflow-auto  rounded-xl bg-secondary p-4">
-      <div className="flex flex-row gap-2 ">
-        <h1 className="font-oxo text-3xl font-bold text-primary max-sm:hidden">
-          All Questions
+    <div className="flex size-full flex-col items-start gap-4 rounded-xl bg-secondary p-4">
+      <div className="flex flex-row gap-2 max-md:justify-between w-full ">
+        <h1 className="font-oxo text-3xl font-bold text-primary ">
+          All Activities
         </h1>
         <FilterComponent
           filter={filter}
@@ -41,7 +41,7 @@ const AllPosts = () => {
           filters={filters}
         />
       </div>
-      <div className="flex w-full flex-wrap gap-4 ">
+      <div className="flex w-full flex-wrap gap-4 overflow-auto pr-2">
         {activity.map((post) => (
           <ActivityCard
             key={post._id}

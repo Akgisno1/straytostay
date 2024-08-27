@@ -27,11 +27,16 @@ const AllPosts = () => {
 
   return (
     <div className="flex size-full flex-col rounded-xl bg-secondary p-4 max-md:justify-center max-sm:p-3">
-      <FilterComponent
-        filter={filter}
-        setFilter={setFilter}
-        filters={filters}
-      />
+      <div className="flex flex-row gap-2 max-md:justify-between w-full ">
+        <h1 className="font-oxo text-3xl font-bold text-primary ">
+          Adoption Posts
+        </h1>
+        <FilterComponent
+          filter={filter}
+          setFilter={setFilter}
+          filters={filters}
+        />
+      </div>
       <div className="flex size-full flex-wrap items-start gap-6 overflow-auto">
         {posts.map((post) => (
           <PostCard

@@ -7,7 +7,7 @@ const TopQuestions = async () => {
   if (result.length === 0) {
     return (
       <div className=" flex w-full flex-col  gap-4 mt-4 overflow-auto">
-        <h1 className="font-oxo text-3xl font-semibold text-primary">
+        <h1 className="font-oxo text-3xl font-semibold text-primary max-lg:text-xl">
           Top Questions
         </h1>
         <div className="text-2xl font-mono">No top Question</div>
@@ -15,8 +15,8 @@ const TopQuestions = async () => {
     );
   }
   return (
-    <div className=" flex w-full flex-col  gap-4 mt-4 overflow-auto">
-      <h1 className="font-oxo text-3xl font-semibold text-primary">
+    <div className=" flex w-full flex-col  gap-4 mt-4 max-sm:mt-0 overflow-auto">
+      <h1 className="font-oxo text-3xl font-semibold text-primary max-lg:text-xl">
         Top Questions
       </h1>
 
@@ -24,7 +24,7 @@ const TopQuestions = async () => {
         <Link
           href={`/question/${question._id}`}
           key={question._id}
-          className="text-lg font-mont line-clamp-1  text-gray-500 hover:text-primary"
+          className="text-lg font-mont line-clamp-1  max-lg:text-base text-gray-500 hover:text-primary"
         >
           {question.content}
         </Link>

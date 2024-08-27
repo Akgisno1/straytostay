@@ -56,13 +56,15 @@ const CreateQuestionForm = () => {
     return null;
   }
   return (
-    <div className="flex w-full flex-row items-center justify-center  gap-6">
+    <div className="flex w-full flex-row items-center justify-center  gap-4 max-sm:gap-2 ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="size-full gap-4 space-y-4 rounded-xl bg-primary-foreground p-4 font-mont"
+          className="size-full gap-4 max-sm:gap-2 space-y-4 rounded-xl bg-primary-foreground p-4 max-sm:p-2 font-mont "
         >
-          <h1 className=" font-mont text-3xl ">Question the Community</h1>
+          <h1 className=" font-mont text-3xl max-lg:text-xl max-sm:text-base">
+            Question the Community
+          </h1>
 
           <FormField
             control={form.control}
@@ -70,7 +72,10 @@ const CreateQuestionForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea {...field} className="h-12 bg-[hsl(var(--card))]" />
+                  <Textarea
+                    {...field}
+                    className="h-12 max-sm:h-8 bg-[hsl(var(--card))]"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,7 +84,7 @@ const CreateQuestionForm = () => {
 
           <Button
             type="submit"
-            className="mt-8 bg-green-700 font-mont text-xl font-bold hover:bg-green-500"
+            className="mt-8 max-sm:h-6 max-sm:mt-2 bg-green-700 font-mont text-xl font-bold hover:bg-green-500 max-lg:text-base max-sm:text-xs"
           >
             Ask Question
           </Button>

@@ -51,7 +51,7 @@ const ActivityCard = ({
     <div
       className={`flex  ${
         currentNgo ? "w-[48%]" : "w-[32%]"
-      } relative flex-col rounded-lg bg-primary-foreground p-4 text-card-foreground shadow-md max-sm:w-[96%]`}
+      } relative flex-col rounded-lg bg-primary-foreground p-4 text-card-foreground shadow-md max-sm:w-[100%]`}
     >
       <div className="mb-4 flex flex-row items-center justify-between">
         {ngo && ( // Only render this part if ngo data is loaded
