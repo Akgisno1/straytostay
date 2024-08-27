@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getPosts } from "../lib/actions/post.action";
-import PostCard from "../components/cards/PostCard";
-import FilterComponent from "./shared/FilterComponent"; // Import the FilterComponent
+import { getUserPosts } from "../../lib/actions/post.action";
+import UserPostCard from "../cards/UserPostCard";
+import FilterComponent from "../shared/FilterComponent";
 
-const AllPosts = () => {
+const UserPosts = (userId) => {
   const [filter, setFilter] = useState("newest");
   const filters = ["newest", "urgent"];
   const [posts, setPosts] = useState([]);
@@ -12,10 +12,9 @@ const AllPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const fetchedPosts = await getPosts({
-          filter, // Use the current filter state
-          page: 1,
-          pageSize: 10,
+        const fetchedPosts = await getUserPosts({
+          userId: userId.userId,
+          filter,
         });
         setPosts(fetchedPosts);
       } catch (error) {
@@ -24,9 +23,8 @@ const AllPosts = () => {
     };
     fetchPosts();
   }, [filter]);
-
   return (
-    <div className="flex size-full flex-col rounded-xl bg-secondary p-4 max-md:justify-center max-sm:p-3">
+    <div className="flex size-full flex-col rounded-xl bg-secondary  p-1 max-md:justify-center ">
       <FilterComponent
         filter={filter}
         setFilter={setFilter}
@@ -34,10 +32,10 @@ const AllPosts = () => {
       />
       <div className="flex size-full flex-wrap items-start gap-6 overflow-auto">
         {posts.map((post) => (
-          <PostCard
+          <UserPostCard
             key={post._id}
             postId={post._id}
-            authorusername={post.authorusername}
+            userId={userId.userId}
             title={post.title}
             description={post.description}
             images={post.images}
@@ -50,4 +48,4 @@ const AllPosts = () => {
   );
 };
 
-export default AllPosts;
+export default UserPosts;

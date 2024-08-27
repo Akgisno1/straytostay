@@ -74,7 +74,7 @@ const QuestionCard = ({
           onClick={() => setShowCreateAnswerForm(!showCreateAnswerForm)}
           className="ml-auto text-blue-500"
         >
-          {showCreateAnswerForm ? "Hide Form" : "Give Answer"}
+          {showCreateAnswerForm ? "Hide" : "Give Answer"}
         </button>
       </div>
       {showCreateAnswerForm && (

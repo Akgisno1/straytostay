@@ -2,13 +2,12 @@
 import React from "react";
 import ProfileAvatar from "./shared/ProfileAvatar";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import GlobalSearch from "./shared/GlobalSearch";
+
+// import GlobalSearch from "./shared/GlobalSearch";
 import { ModeToggle } from "./ModeToggle";
 import { useAuth } from "../context/AuthContext";
 
 const TopBar = () => {
-  const pathname = usePathname();
   const { currentUser, currentNgo } = useAuth();
 
   return (
@@ -19,9 +18,9 @@ const TopBar = () => {
         </h2>
       </div>
 
-      <div className="flex flex-row items-center justify-center rounded-xl bg-transparent max-md:hidden">
+      {/* <div className="flex flex-row items-center justify-center rounded-xl bg-transparent max-md:hidden">
         <GlobalSearch />
-      </div>
+      </div> */}
 
       <div className="flex flex-row items-center justify-end gap-4">
         {currentUser || currentNgo ? (

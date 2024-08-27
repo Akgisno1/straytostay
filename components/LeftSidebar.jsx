@@ -2,13 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import {
-  FaHome,
-  FaUsers,
-  FaBuilding,
-  FaFileAlt,
-  FaBookmark,
-} from "react-icons/fa";
+import { FaHome, FaUsers, FaBuilding, FaFileAlt } from "react-icons/fa";
 import Logout from "./shared/Logout";
 import { useAuth } from "../context/AuthContext";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
@@ -77,15 +71,6 @@ const LeftSidebar = () => {
             </Link>
           </HoverCardTrigger>
           <HoverCardContent>Create Post</HoverCardContent>
-        </HoverCard>
-
-        <HoverCard>
-          <HoverCardTrigger>
-            <Link href="/savedpost" className={linkClasses("/savedpost")}>
-              <FaBookmark className={`text-2xl ${iconClasses("/savedpost")}`} />
-            </Link>
-          </HoverCardTrigger>
-          <HoverCardContent>Saved Posts</HoverCardContent>
         </HoverCard>
       </div>
 

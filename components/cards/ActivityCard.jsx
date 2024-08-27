@@ -105,7 +105,7 @@ const ActivityCard = ({
           onClick={() => setShowCreateCommentForm(!showCreateCommentForm)}
           className="ml-auto text-blue-500"
         >
-          {showCreateCommentForm ? "Hide Comments" : "View Comments"}
+          {showCreateCommentForm ? "Hide" : "Give Comments"}
         </button>
       </div>
       {showCreateCommentForm && (
