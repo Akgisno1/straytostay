@@ -57,7 +57,7 @@ const UserInfo = () => {
                 {user.name.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
-            <div className=" flex w-full flex-col overflow-hidden rounded-xl bg-primary-foreground  p-4 text-primary max-sm:p-1 max-sm:text-xs">
+            <div className=" bg-primary- flex w-full flex-col overflow-hidden rounded-xl  p-4 text-primary max-sm:p-1 max-sm:text-xs">
               <div className="text-blue-500">@{user.username}</div>
               <div>{user.name.toUpperCase()}</div>
               <div className="flex flex-row gap-2 max-sm:flex-col">
