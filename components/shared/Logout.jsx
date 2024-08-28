@@ -3,7 +3,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { logoutUser } from "../../lib/actions/user.action";
 import { useToast } from "../ui/use-toast";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import {
   HoverCard,
@@ -15,7 +15,7 @@ import { logoutNgo } from "../../lib/actions/ngo.action";
 const Logout = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const { currentUser, currentNgo } = useAuth();
 
   const handlelogout = async () => {
