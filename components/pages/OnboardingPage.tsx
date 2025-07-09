@@ -13,7 +13,7 @@ const OnboardingPage = () => {
           <span className=" font-oxo text-2xl font-bold">StraytoStay</span>
         </div>
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
+          <div className="w-full max-w-md">
             <OnboardingForm />
           </div>
         </div>

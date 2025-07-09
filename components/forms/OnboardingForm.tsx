@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { User, Building2, Calendar, Phone, Globe } from "lucide-react";
+import { User, Building2, Phone } from "lucide-react";
 
 // Indian States and Cities data
 const indianStates = [
@@ -222,50 +222,43 @@ const OnboardingForm = () => {
       )}
       onClick={() => setUserType(type)}
     >
-      {/* Gradient overlay on hover */}
+      {/* Darker Gradient overlay on hover */}
       <div
         className={cn(
-          "absolute inset-0 rounded-xl bg-gradient-to-br from-green-500/0 to-green-500/0 transition-all duration-300",
-          "group-hover:from-green-500/5 group-hover:to-green-500/10"
+          "absolute inset-0 rounded-xl bg-gradient-to-br from-green-600/20 to-green-900/30 transition-all duration-300",
+          "group-hover:from-green-700/40 group-hover:to-green-900/60"
         )}
       />
-
-      <div className="relative z-10">
-        <div className="flex items-center gap-4 mb-4">
-          <div
+      <div className="relative z-10 flex flex-col items-center text-center gap-3">
+        <div
+          className={cn(
+            "p-3 rounded-lg transition-all duration-300 mb-2",
+            "bg-green-100 dark:bg-green-900/30 group-hover:bg-green-200 dark:group-hover:bg-green-800/40"
+          )}
+        >
+          <Icon
             className={cn(
-              "p-3 rounded-lg transition-all duration-300",
-              "bg-green-100 dark:bg-green-900/30 group-hover:bg-green-200 dark:group-hover:bg-green-800/40"
+              "w-10 h-10 transition-all duration-300",
+              "text-green-600 dark:text-green-400 group-hover:text-white group-hover:scale-110"
             )}
-          >
-            <Icon
-              className={cn(
-                "w-6 h-6 transition-all duration-300",
-                "text-green-600 dark:text-green-400 group-hover:text-white group-hover:scale-110"
-              )}
-            />
-          </div>
-          <div>
-            <h3
-              className={cn(
-                "text-lg font-semibold transition-all duration-300",
-                "text-gray-900 dark:text-white group-hover:text-white"
-              )}
-            >
-              {title}
-            </h3>
-            <p
-              className={cn(
-                "text-sm transition-all duration-300",
-                "text-gray-600 dark:text-gray-400 group-hover:text-white/90"
-              )}
-            >
-              {description}
-            </p>
-          </div>
+          />
         </div>
-
-        {/* Selection indicator */}
+        <h3
+          className={cn(
+            "text-lg font-semibold transition-all duration-300",
+            "text-gray-900 dark:text-white group-hover:text-white"
+          )}
+        >
+          {title}
+        </h3>
+        <p
+          className={cn(
+            "text-sm transition-all duration-300",
+            "text-gray-600 dark:text-gray-400 group-hover:text-white/90"
+          )}
+        >
+          {description}
+        </p>
         {isSelected && (
           <div className="absolute top-4 right-4 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
             <div className="w-2 h-2 bg-white rounded-full" />
@@ -276,7 +269,7 @@ const OnboardingForm = () => {
   );
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       {!userType ? (
         // User Type Selection
         <div className="space-y-8">
@@ -285,10 +278,13 @@ const OnboardingForm = () => {
               Welcome to StraytoStay
             </h1>
             <p className="text-muted-foreground text-lg">
-              Choose how you&apos;d like to join our community
+              {userType === "ngo"
+                ? "Register your organisation to help animals, manage adoptions, and host events."
+                : userType === "user"
+                ? "Register to adopt pets, share stories, and connect with the community."
+                : "Choose how you'd like to join our community"}
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-6">
             <UserTypeCard
               type="user"
@@ -297,7 +293,6 @@ const OnboardingForm = () => {
               icon={User}
               isSelected={userType === "user"}
             />
-
             <UserTypeCard
               type="ngo"
               title="Register as NGO"
@@ -312,28 +307,36 @@ const OnboardingForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold">
-              Complete Your {userType === "ngo" ? "NGO" : "User"} Profile
+              Complete Your {userType === "ngo" ? "Organisation" : "User"}{" "}
+              Profile
             </h1>
             <p className="text-muted-foreground text-sm">
-              Tell us more about yourself to get started
+              {userType === "ngo"
+                ? "Tell us more about your organisation to get started."
+                : "Tell us more about yourself to get started."}
             </p>
           </div>
-
           <div className="grid gap-4">
-            {/* Basic Information */}
+            {/* Name Field (dynamic label/placeholder) */}
+            <div className="space-y-2">
+              <Label htmlFor="name">
+                {userType === "ngo" ? "Organisation Name" : "Full Name"}
+              </Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                placeholder={
+                  userType === "ngo"
+                    ? "Enter organisation name"
+                    : "Enter your full name"
+                }
+                required
+              />
+            </div>
+            {/* Username and Phone */}
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  placeholder="Enter your full name"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label htmlFor="username">Username</Label>
                 <Input
                   id="username"
@@ -345,23 +348,7 @@ const OnboardingForm = () => {
                   required
                 />
               </div>
-            </div>
-
-            {/* Email and Phone */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label htmlFor="phoneNumber">Phone Number</Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -378,44 +365,12 @@ const OnboardingForm = () => {
                 </div>
               </div>
             </div>
-
-            {/* Password Fields */}
+            {/* State and City Selects (full width) */}
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) =>
-                    handleInputChange("password", e.target.value)
-                  }
-                  placeholder="Create a strong password"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={(e) =>
-                    handleInputChange("confirmPassword", e.target.value)
-                  }
-                  placeholder="Confirm your password"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label htmlFor="state">State</Label>
                 <Select value={selectedState} onValueChange={handleStateChange}>
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select your state" />
                   </SelectTrigger>
                   <SelectContent>
@@ -427,15 +382,14 @@ const OnboardingForm = () => {
                   </SelectContent>
                 </Select>
               </div>
-
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label htmlFor="city">City</Label>
                 <Select
                   value={formData.city}
                   onValueChange={(city) => handleInputChange("city", city)}
                   disabled={!selectedState}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full">
                     <SelectValue
                       placeholder={
                         selectedState
@@ -454,45 +408,30 @@ const OnboardingForm = () => {
                 </Select>
               </div>
             </div>
-
-            {/* Bio */}
+            {/* Bio Field (dynamic label/placeholder) */}
             <div className="space-y-2">
-              <Label htmlFor="bio">Bio</Label>
+              <Label htmlFor="bio">
+                {userType === "ngo" ? "About the Organisation" : "Bio"}
+              </Label>
               <Textarea
                 id="bio"
                 value={formData.bio}
                 onChange={(e) => handleInputChange("bio", e.target.value)}
-                placeholder="Tell us about yourself..."
+                placeholder={
+                  userType === "ngo"
+                    ? "Tell us about the organisation..."
+                    : "Tell us about yourself..."
+                }
                 rows={3}
               />
             </div>
-
             {/* NGO Specific Fields */}
             {userType === "ngo" && (
               <div className="space-y-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                <h3 className="font-semibold text-green-800 dark:text-green-200 flex items-center gap-2">
-                  <Building2 className="w-4 h-4" />
-                  Organization Details
-                </h3>
-
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="ngoName">Organization Name</Label>
-                    <Input
-                      id="ngoName"
-                      value={formData.ngoName}
-                      onChange={(e) =>
-                        handleInputChange("ngoName", e.target.value)
-                      }
-                      placeholder="Enter organization name"
-                      required
-                    />
-                  </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="foundedDate">Founded Date</Label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                       <Input
                         id="foundedDate"
                         type="date"
@@ -500,30 +439,11 @@ const OnboardingForm = () => {
                         onChange={(e) =>
                           handleInputChange("foundedDate", e.target.value)
                         }
-                        className="pl-10"
+                        className=""
                         required
                       />
                     </div>
                   </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="website">Website</Label>
-                    <div className="relative">
-                      <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                      <Input
-                        id="website"
-                        value={formData.website}
-                        onChange={(e) =>
-                          handleInputChange("website", e.target.value)
-                        }
-                        placeholder="https://your-website.com"
-                        className="pl-10"
-                      />
-                    </div>
-                  </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="instagram">Instagram Handle</Label>
                     <Input
@@ -538,7 +458,6 @@ const OnboardingForm = () => {
                 </div>
               </div>
             )}
-
             {/* Submit Button */}
             <div className="space-y-4">
               <Button
@@ -547,7 +466,6 @@ const OnboardingForm = () => {
               >
                 Complete Registration
               </Button>
-
               <Button
                 type="button"
                 variant="outline"

@@ -11,8 +11,9 @@ export interface User {
   avatar?: string[];
   bio?: string;
   role?: "user" | "ngo";
+  phoneNumber?: string;
+  city?: string;
   state?: string;
-  country?: string;
   isActive?: boolean;
   notifications?: number;
   lastLoginAt?: Date;
